@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion du personnel{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <aside class="col-md-1 bg-dark">
+            <ul>
+                <li class=""><a href="" class="link_edit"><span class="material-icons" style="display: block;">
+                            person
+                        </span>Profil</a></li>
+                <li class=""><a href="" class="link_liste"><span class="material-icons" style="display: block;">
+                            people
+                        </span>Liste</a></li>
+                <li class=""><a href="" class="link_planning"><span class="material-icons" style="display: block;">
+                            today
+                        </span>Planning</a></li>
+                        <li class=""><a href="" class="link_setting"><span class="material-icons" style="display: block;">
+                            settings
+                        </span>Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- body -->
+        <div id="app" class="col-md-11">
+            <edit :id="{{user.id}}"></edit>
+        </div>
+        <div id="edition" class="col-md-11">
+            <annuaire></annuaire>
+        </div>
+
+        <div class="annuaire col-md-10 offset-md-1">
+
+                <h2 class="mt-5">Liste des employés</h2>
+            <table class="table table-striped col-md-12" id="table_id">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="calendar col-md-10 ml-5">
+            <div class="row">
+                <div id='external-events' class="mt-5 col-md-3">
+                    <p style="color:white;"><strong>{{ user.firstname}} {{user.lastname}}</strong></p>
+                    <p>
+                        <strong style="color:white;">Activités</strong>
+                    </p>
+                    {% for item in activite %}
+                    {% if item.id == 1 %}
+                        <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event mt-2'>
+                            <div class='fc-event-main' style="background-color:#2ecc71">{{ item.label }}</div>
+                        </div>
+                    {% endif %}
+                    {% if item.id == 2 %}
+                        <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event mt-2'>
+                            <div class='fc-event-main' style="background-color:#f1c40f">{{ item.label }}</div>
+                        </div>
+                    {% endif %}
+                    {% if item.id == 3 %}
+                    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event mt-2'>
+                        <div class='fc-event-main' style="background-color:#d63031">{{ item.label }}</div>
+                    </div>
+                    {% endif %}
+                    {% if item.id == 3 %}
+                    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event mt-2'>
+                        <div class='fc-event-main' style="background-color:#0984e3">Majorée</div>
+                    </div>
+                    {% endif %}
+
+                    {% endfor %}
+
+                </div>
+                <div id="calendar" class="col-md-9">
+                    <planning :user="{{user.id}}"  />
+                </div>
+                <!-- modal pour supprimer un planning -->
+                <div id="calendarModal" class="modal fade col-12">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="col-md-7">
+                                    <span>Activité : </span>
+                                    <h4 id="modalTitle" class="modal-title"></h4>
+                                </div>
+
+                            </div>
+                            <div id="modalBody" class="modal-body">
+                                <p>Voulez-vous supprimer cet événement?</p>
+                                <p>Date : <span class="modalbody"></span></p>
+                                <a class="btn btn-danger yes" data-dismiss="modal">oui</a>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="event" class="col-md-11">
+            <event ></event>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
