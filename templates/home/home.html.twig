@@ -1,9 +1,18 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="container accueil">
-        <div id="home">
-            <register />
-        </div>
+    <div class="container accueil mt-5">
+            <div>
+                <a  href="{{path('home')}}" >Se connecter</a>
+                <div class="mt-5">
+                    <img src="/images/connect.png" alt="">
+                </div>
+
+            </div>
+            <a class="register">Créer un compte</a>
+            <div id="home">
+                <register />
+            </div>
+            
     </div>
 {% endblock %}

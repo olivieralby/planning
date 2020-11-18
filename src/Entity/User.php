@@ -67,11 +67,24 @@ class User implements UserInterface
      */
     private $email;
 
+    
+
     /**
      * @ORM\ManyToMany(targetEntity=Day::class, mappedBy="users",cascade={"persist"})
      * @Groups("user:read")
      */
     private $days;
+
+    /**
+     * @ORM\Column(type="array")
+     * @Groups("user:read")
+     * 
+     */
+    private $roles = [];
+
+    
+
+   
 
     public function __construct()
     {
@@ -138,8 +151,19 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return ['ROLE_ADMIN'];
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
+    
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+    
     public function getSalt()
     {
         return null;
@@ -176,4 +200,30 @@ class User implements UserInterface
 
         return $this;
     }
+
+    
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->fistname,
+            $this->lastname,
+            $this->email,
+        ));
+    }
+ 
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->fistname,
+            $this->lastname,
+            $this->email,
+            ) = $this->unserialize($serialized);
+    }
+
+    
+
+    
 }

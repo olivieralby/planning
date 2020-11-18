@@ -14,7 +14,6 @@ import moment from 'moment'
 let $ = require('jquery');
 export default {
     props:{user:Number},
-    
     mounted(){
         let draggableEl = document.getElementById('external-events');
         new Draggable(draggableEl, {
@@ -40,29 +39,31 @@ export default {
                 }
             },
             drop:(start)=>{
+                console.log(start)
                  let activites = ""
                  if(start.draggedEl.innerText==="Travaillé"){
-                      activites = 1
+                      activites = 13;
                  }else if(start.draggedEl.innerText==="Absent"){
-                      activites = 2
+                      activites = 14;
 
-                 }else if(start.draggedEl.innerText==="1/2 journée"){
-                      activites = 3
-                    
+                 }else if(start.draggedEl.innerText==="Majoré"){
+                      activites = 15;
                  }else{
-                      activites = 4
+                      activites = 16;
                  }
                  let event = {"start":start.dateStr,"end":start.dateStr,"activites":activites}
                  this.load(event)
             },
             eventClick: function (event, jsEvent, view) {
+                let d_id = event.event._def.extendedProps.day_id
                 $('#modalTitle').html(event.event.title);
                 $('.modalbody').html(moment(event.event.start).format('l'));
                 $('#calendarModal').modal();
                 document.querySelector('.yes').addEventListener('click', function () {
                     axios
-                        .delete('/calendar/destroy/' + event.event.id, {data: {event: event.event}})
-                        .then((event) => console.log(event))
+                        .delete('/calendar/destroy/' + d_id, {data: {event: event.event}})
+                        .then((event) => console.log(event)).catch(error=>console.log(error))
+                        window.location.href= "/home"
                 })
             }
 
@@ -78,7 +79,6 @@ export default {
         load(event){
             console.log(this.user)
             axios.post('/calendar/new',{event,"user":{"id":this.user}}).then(resp=>console.log(resp)).catch(error=>console.log(error))
-
         }
 
     }

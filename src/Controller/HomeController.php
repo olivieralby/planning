@@ -22,13 +22,17 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="home")
      */
-    public function index(ActiviteRepository $activ): Response
+    public function index(ActiviteRepository $activ, UserRepository $repo): Response
     {
         $user = $this->getUser();
         $activite = $activ->findAll();
+        $role = $repo->findAll();
+
+
         return $this->render('home/index.html.twig', [
             'user' => $user,
-            'activite'=>$activite
+            'activite'=>$activite,
+            'role'=>$role
         ]);
     }
 

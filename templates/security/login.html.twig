@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
-<form method="post">
+<form method="post" class="bg-dark col-md-6 offset-md-3 mt-5 p-5 login" style="color:white;">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -37,7 +37,7 @@
     #}
 
     <button class="btn btn-primary mt-3" type="submit">
-        Sign in
+        Se connecter
     </button>
     </div>
 </form>

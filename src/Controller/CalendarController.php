@@ -39,7 +39,6 @@ class CalendarController extends AbstractController
     {
 
         $user = $this->getUser();
-        //$id = $user->getId();
         $day = $em->getDay($id);
         if($day==null){
             return $this->json('table day vide',200);
@@ -89,6 +88,7 @@ class CalendarController extends AbstractController
         $day = $dr->find($id);
         $em->remove($day);
         $em->flush();
+        return $this->json('élément supprimé',200);
 
     }
 
@@ -97,6 +97,6 @@ class CalendarController extends AbstractController
      */
     public function activite(ActiviteRepository $ar)
     {
-        return $this->json($ar->findAll(),200,[],['groups'=>["day:read"]]);
+        return $this->json($ar->findAll(),200,[],['groups'=>["user:read"]]);
     }
 }

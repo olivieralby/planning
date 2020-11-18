@@ -54,6 +54,7 @@ export default {
             }else{
                 this.user.password = this.password;
                 axios.put('/api/users/'+this.id,this.user).catch(error=>console.log(error))
+                window.location.href ="/home"
             }
         }
     }

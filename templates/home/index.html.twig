@@ -5,6 +5,7 @@
 {% block body %}
 <div class="container mt-5">
     <div class="row">
+        
         <aside class="col-md-1 bg-dark">
             <ul>
                 <li class=""><a href="" class="link_edit"><span class="material-icons" style="display: block;">
@@ -30,10 +31,10 @@
             <annuaire></annuaire>
         </div>
 
-        <div class="annuaire col-md-10 offset-md-1">
+        <div class="annuaire col-md-11" style="width:100%;">
 
-                <h2 class="mt-5">Liste des employés</h2>
-            <table class="table table-striped col-md-12" id="table_id">
+            <h2 class="mt-5">Liste des employés</h2>
+            <table class="table table-striped" id="table_id">
                 <thead class="thead-dark">
                     <tr>
                         <th>Prénom</th>
@@ -53,24 +54,24 @@
                         <strong style="color:white;">Activités</strong>
                     </p>
                     {% for item in activite %}
-                    {% if item.id == 1 %}
+                    {% if item.id == 13 %}
                         <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event mt-2'>
-                            <div class='fc-event-main' style="background-color:#2ecc71">{{ item.label }}</div>
+                            <div class='fc-event-main' style="background-color:#00b894">{{ item.label }}</div>
                         </div>
                     {% endif %}
-                    {% if item.id == 2 %}
+                    {% if item.id == 14 %}
                         <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event mt-2'>
-                            <div class='fc-event-main' style="background-color:#f1c40f">{{ item.label }}</div>
+                            <div class='fc-event-main' style="background-color:#2d3436">{{ item.label }}</div>
                         </div>
                     {% endif %}
-                    {% if item.id == 3 %}
+                    {% if item.id == 15 %}
                     <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event mt-2'>
                         <div class='fc-event-main' style="background-color:#d63031">{{ item.label }}</div>
                     </div>
                     {% endif %}
-                    {% if item.id == 3 %}
+                    {% if item.id == 16 %}
                     <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event mt-2'>
-                        <div class='fc-event-main' style="background-color:#0984e3">Majorée</div>
+                        <div class='fc-event-main' style="background-color:#6c5ce7">1/2 journée</div>
                     </div>
                     {% endif %}
 
@@ -94,7 +95,7 @@
                             <div id="modalBody" class="modal-body">
                                 <p>Voulez-vous supprimer cet événement?</p>
                                 <p>Date : <span class="modalbody"></span></p>
-                                <a class="btn btn-danger yes" data-dismiss="modal">oui</a>
+                                <a href="" class="btn btn-danger yes" data-dismiss="modal">oui</a>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -107,7 +108,7 @@
         </div>
 
         <div id="event" class="col-md-11">
-            <event ></event>
+            <event></event>
         </div>
 
 

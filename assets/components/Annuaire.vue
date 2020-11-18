@@ -50,7 +50,9 @@ export default {
                                         edit
                                         </span></a><a href="" class="table_planning" style="color:pink"><span class="material-icons table_planning">
                                         today
-                                        </span></a>`
+                                        </span></a><a href="" class="table_planning" style="color:pink"><span class="material-icons table_planning">
+                                        today
+                                        </span></a>`;
                         }
                     },
                 ]
@@ -61,10 +63,9 @@ export default {
                 $(e.target.parentNode.parentNode.parentNode).addClass('select');
                 var selected_row = $('#table_id').DataTable().rows('.select').data()[0];
                 this.cc(selected_row)
-                document.getElementById('edition').style.display = "block"
-                document.querySelector('.showed').style.display = "block"
-                document.querySelector('.annuaire').style.display = "none"
-
+                document.getElementById('edition').style.display = "block";
+                document.querySelector('.showed').style.display = "block";
+                document.querySelector('.annuaire').style.display = "none";
                 //history.replaceState({},"",'http://localhost:8000/home/'+selected_row.id)
             })
 
@@ -73,9 +74,9 @@ export default {
                 $('#table_id tbody tr').removeClass('select');
                 $(e.target.parentNode.parentNode.parentNode).addClass('select');  
                 var selected_row = $('#table_id').DataTable().rows('.select').data()[0];
-                document.querySelector('.annuaire').style.display = "none"
-                document.getElementById('edition').style.display = "block"
-                this.planning(selected_row)
+                document.querySelector('.annuaire').style.display = "none";
+                document.getElementById('edition').style.display = "block";
+                this.planning(selected_row);
             })
         })
         
@@ -97,6 +98,7 @@ export default {
 #table_id{
     margin: 0;
     padding: 0;
+    width: 100%;
 }
     .showed{
         display: none;

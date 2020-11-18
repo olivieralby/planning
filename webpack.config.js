@@ -54,7 +54,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    .enableSassLoader()
+    //.enableSassLoader()
     .enableVueLoader()
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
